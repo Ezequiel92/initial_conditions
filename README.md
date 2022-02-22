@@ -1,6 +1,6 @@
-# 💱 IC conversions
+# 💱 Hydrodynamical IC conversions
 
-Pluto notebook for converting between initial conditions (IC) formats.
+[Pluto](https://github.com/fonsp/Pluto.jl) notebook for converting between initial conditions (IC) formats.
 
 It goes from a human readable `.dat` file to the binary format of GADGET (`SnapFormat` = 2) or a HDF5 file (`SnapFormat` = 3).
 
