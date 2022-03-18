@@ -1,4 +1,6 @@
-# 💱 Hydrodynamical IC conversions
+<div align="center">
+    <h1>💱 Hydrodynamical IC conversions</h1>
+</div>
 
 [Pluto](https://github.com/fonsp/Pluto.jl) notebook for converting between initial conditions (IC) formats.
 
