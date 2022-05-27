@@ -42,6 +42,7 @@
  *                void InitCool(void)
  *                void cooling_only(void)
  *                void cool_cell(int i)
+ *                void get_gas_fractions(const int index, double *fi, double *fa, double *fm)
  *
  *
  * \par Major modifications and contributions:
@@ -58,6 +59,7 @@
 
 #include "../main/allvars.h"
 #include "../main/proto.h"
+#include "../ez_sfr/ez_sfr.h"
 
 #ifdef COOLING
 
@@ -866,5 +868,54 @@ void cool_cell(int i)
 
   set_pressure_of_cell(i);
 }
+
+#ifdef EZ_SFR
+
+/*! \brief  This function computes the atomic, molecular and ionized gas fractions.
+ *
+ *  Used only in `src/ez_sfr/ez_sfr.c` for calculating the SFR.
+ *
+ *  \param[in] index Index of the gas cell in question.
+ *  \param[out] fi ionized fraction.
+ *  \param[out] fa atomic fraction.
+ *  \param[out] fm molecular fraction.
+ *
+ *  \return void
+ */
+void get_gas_fractions(const int index, double *fi, double *fa, double *fm)
+{
+  /* Dummy variables, to comply with the API of SetOutputGasState() */
+  double nh0 = 0, coolrate = 0, ne = SphP[index].Ne;
+  SetOutputGasState(index, &ne, &nh0, &coolrate);
+
+  /* Hydrogen fractions */
+  double fH0 = gs.nH0 * gs.XH; /* Neutral Hydrogen (atomic fraction) */
+  double fHp = gs.nHp * gs.XH; /* Ionized Hydrogen (ionized fraction) */
+
+  /* The atomic and ionized fraction are renormalized to make fa + fi = 1 */ 
+  *fa = fH0 / (fH0 + fHp); /* Atomic fraction */
+  *fi = fHp / (fH0 + fHp); /* Ionized fraction */
+  *fm = 0.0;               /* Molecular fraction */
+}
+
+// void get_gas_fractions(const int index, double *fi, double *fa, double *fm)
+// {
+//   /* Dummy variables, to comply with the API of SetOutputGasState() */
+//   double nh0 = 0, coolrate = 0, ne = SphP[index].Ne;
+//   SetOutputGasState(index, &ne, &nh0, &coolrate);
+
+//   /* Hydrogen and Helium fractions */
+//   double fH0   = gs.nH0 * gs.XH;        /* Neutral Hydrogen (atomic fraction) */
+//   double fHe0  = gs.nHe0 * gs.yhelium;  /* Neutral Helium (atomic fraction) */
+//   double fHp   = gs.nHp * gs.XH;        /* Ionized Hydrogen (ionized fraction) */
+//   double fHep  = gs.nHep * gs.yhelium;  /* Ionized Helium (ionized fraction) */
+//   double fHepp = gs.nHepp * gs.yhelium; /* Doubly ionized Helium (ionized fraction) */
+
+//   *fa = fH0 + fHe0;         /* Atomic fraction */
+//   *fi = fHp + fHep + fHepp; /* Ionized fraction */
+//   *fm = 1.0 - *fa - *fi;    /* Molecular fraction */
+// }
+
+#endif /* #ifdef EZ_SFR */
 
 #endif /* #ifdef COOLING */

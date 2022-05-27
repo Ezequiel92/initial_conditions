@@ -1422,6 +1422,14 @@ extern struct sph_particle_data
   MyFloat Weight;
 #endif /* #ifdef ADDBACKGROUNDGRID */
 
+#ifdef EZ_SFR
+  double ionizedFrac;
+  double atomicFrac;
+  double molecularFrac;
+  double metalFrac;
+  double stellarFrac;
+#endif /* #ifdef EZ_SFR */
+
 } * SphP,          /*!< holds SPH particle data on local processor */
     *DomainSphBuf; /*!< buffer for SPH particle data in domain decomposition */
 
@@ -1709,6 +1717,12 @@ enum iofields
   IO_SOFTENING,
   IO_TASK,
   IO_TIMEBIN_HYDRO,
+
+  IO_ION_F,
+  IO_ATO_F,
+  IO_MOL_F,
+  IO_MET_F,
+  IO_STA_F,
 
   IO_LASTENTRY /* This should be kept - it signals the end of the list */
 };

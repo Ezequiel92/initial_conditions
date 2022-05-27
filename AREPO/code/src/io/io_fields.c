@@ -762,4 +762,25 @@ void init_io_fields()
              GAS_ONLY);
   init_units(IO_ALLOWREFINEMENT, 0, 0, 0, 0, 0, 0);
 #endif /* #if defined(REFINEMENT_HIGH_RES_GAS) */
+
+#ifdef EZ_SFR
+  init_field(IO_ION_F, "IONF", "IonizedFraction", MEM_MY_FLOAT, FILE_MY_IO_FLOAT, FILE_NONE, 1, A_NONE, &SphP[0].ionizedFrac, 0,
+             GAS_ONLY);
+  init_units(IO_ION_F, 0, 0, 0, 0, 0, 0); /* dimensionless fraction */
+
+  init_field(IO_ATO_F, "ATOF", "AtomicFraction", MEM_MY_FLOAT, FILE_MY_IO_FLOAT, FILE_NONE, 1, A_NONE, &SphP[0].atomicFrac, 0,
+             GAS_ONLY);
+  init_units(IO_ATO_F, 0, 0, 0, 0, 0, 0); /* dimensionless fraction */
+
+  init_field(IO_MOL_F, "MOLF", "MolecularFraction", MEM_MY_FLOAT, FILE_MY_IO_FLOAT, FILE_NONE, 1, A_NONE, &SphP[0].molecularFrac, 0,
+             GAS_ONLY);
+  init_units(IO_MOL_F, 0, 0, 0, 0, 0, 0); /* dimensionless fraction */
+
+  init_field(IO_MET_F, "METF", "MetalFraction", MEM_MY_FLOAT, FILE_MY_IO_FLOAT, FILE_NONE, 1, A_NONE, &SphP[0].metalFrac, 0, GAS_ONLY);
+  init_units(IO_MET_F, 0, 0, 0, 0, 0, 0); /* dimensionless fraction */
+
+  init_field(IO_STA_F, "STAF", "StellarFraction", MEM_MY_FLOAT, FILE_MY_IO_FLOAT, FILE_NONE, 1, A_NONE, &SphP[0].stellarFrac, 0,
+             GAS_ONLY);
+  init_units(IO_STA_F, 0, 0, 0, 0, 0, 0); /* dimensionless fraction */
+#endif /* #ifdef EZ_SFR */
 }

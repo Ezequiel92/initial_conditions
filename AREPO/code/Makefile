@@ -115,8 +115,10 @@ endif
 
 # RAVEN
 ifeq ($(SYSTYPE),"RAVEN")
-CC        =  mpiicc -std=c11 -Wall -Werror
-OPTIMIZE  =  -O3 -xICELAKE-SERVER -qopt-zmm-usage=high -fp-model=precise
+CC        = mpicc -std=c11 -Wall
+CC       += -Wno-unused-function -Wno-unused-but-set-variable -Wno-unused-variable 
+CC       += -Wno-stringop-truncation -Wno-restrict -Wno-maybe-uninitialized -Wno-format-overflow
+OPTIMIZE  = -O3 -march=icelake-server
 
 MPICH_LIB = -lmpi
 GSL_INCL  = -I$(GSL_HOME)/include
@@ -132,8 +134,10 @@ endif
 
 # FREYA
 ifeq ($(SYSTYPE),"FREYA")
-CC        =  mpiicc -std=c11 -Wall -Werror
-OPTIMIZE  =  -O3 -xCORE-AVX512 -qopt-zmm-usage=high -fp-model=precise
+CC        = mpicc -std=c11 -Wall
+CC       += -Wno-unused-function -Wno-unused-but-set-variable -Wno-unused-variable 
+CC       += -Wno-stringop-truncation -Wno-restrict -Wno-maybe-uninitialized -Wno-format-overflow
+OPTIMIZE  = -O3 -march=skylake-avx512
 
 MPICH_LIB = -lmpi
 GSL_INCL  = -I$(GSL_HOME)/include
@@ -343,6 +347,12 @@ OBJS	+= subfind/subfind.o \
            subfind/subfind_so_potegy.o
 INCL	+= subfind/subfind.h
 SUBDIRS += subfind
+endif
+
+ifeq (EZ_SFR,$(findstring EZ_SFR,$(CONFIGVARS)))
+OBJS    += ez_sfr/ez_sfr.o
+INCL    += ez_sfr/ez_sfr.h
+SUBDIRS += ez_sfr
 endif
 
 ##################################

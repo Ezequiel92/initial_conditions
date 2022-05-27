@@ -2,30 +2,31 @@
     <h1>💱 Hydrodynamical IC conversions</h1>
 </div>
 
-# AREPO
+# Arepo
 
 Arepo code configured to transform ICs in the binary format of GADGET (`SnapFormat` = 2) to HDF5 ICs for Arepo.
 
 ## Usage
 
-Make the script runable
+Make the script executable
+
 ```bash
-chmod 700 ./AREPO/runme.sh
+chmod 700 ./Arepo/code/send.sh
 ```
 
 Run it with the path to the file to be converted as an input
 
 ```bash
-./runme.sh ./AREPO/source_ic/YOUR_BINARY_ICs
+. send.sh ../source_ic/YOUR_BINARY_ICs
 ```
 
-Only one IC file at a time can be converted. If the run is successful, there should be a `output` folder with the HDF5 ICs in the `AREPO` directory.
+Only one IC file at a time can be converted. If the run is successful, there should be a `output` folder with the HDF5 ICs in the `Arepo` directory.
 
-# GADGET
+# Gadget
 
 [Pluto](https://github.com/fonsp/Pluto.jl) notebook for converting between initial conditions (IC) formats.
 
-It goes from a human readable `.dat` file (from the [AGORA](https://sites.google.com/site/santacruzcomparisonproject/data) project) to the binary format of GADGET (`SnapFormat` = 2) or the HDF5 format for GADGET (`SnapFormat` = 3).
+It goes from a human readable `.dat` file (from the [AGORA](https://sites.google.com/site/santacruzcomparisonproject/data) project) to the binary format (`SnapFormat` = 2) or the HDF5 format (`SnapFormat` = 3), both for Gadget.
 
 # HDF5 information
 

@@ -3,10 +3,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %-------------------------------------- Initial conditions
-InitCondFile                            ../source_ic/gassphere_32.dat      
+InitCondFile                            ../source_ic/gassphere_32.dat
 ICFormat                                1
 InitGasTemp                             244.8
 MinimumDensityOnStartUp                 1.0e-20
+GridSize                                32
 
 %-------------------------------------- Output file names and formats
 OutputDir                               ../output
@@ -15,14 +16,13 @@ NumFilesPerSnapshot                     1
 OutputListOn                            0
 OutputListFilename                      ./output_list.txt
 SnapFormat                              3
-NumFilesWrittenInParallel               10
+NumFilesWrittenInParallel               1
 
 %-------------------------------------- Output frequency
 CpuTimeBetRestartFile                   7200                           % 7200 s = 2 hs
 TimeBetSnapshot                         0.01                           % ~0.01 Gyr = 10000000 yr
 TimeBetStatistics                       0.01                           % ~0.01 Gyr = 10000000 yr
 TimeOfFirstSnapshot                     0.0
-FlushCpuTimeDiff                        60                             % 60s  
 
 %-------------------------------------- CPU-time limit and restarts
 TimeLimitCPU                            86400                          % 86400 s = 24 hs
@@ -33,7 +33,7 @@ ResubmitCommand                         ./resubmit_job.sh
 MaxMemSize                              1900                           % ~95% of memory per node / MPI tasks per node
 
 %-------------------------------------- Simulated time span and spatial extent
-BoxSize                                 100000.0                       % ~100000 kpc = 100 Mpc
+BoxSize                                 10000.0                       % ~10000 kpc = 10 Mpc
 PeriodicBoundariesOn                    0
 TimeBegin                               0.0
 TimeMax	                                2.0                            % ~2 Gyr
@@ -71,17 +71,8 @@ TopNodeFactor                           4
 %-------------------------------------- Moving mesh
 DesNumNgb                               64
 MaxNumNgbDeviation                      4
-MaxVolumeDiff                           10                            
-MinVolume                               1 
-MaxVolume                               1.0e9                         
 CellShapingFactor                       1.0
 CellShapingSpeed                        0.5
-
-%-------------------------------------- Refinement and derefinement
-ReferenceGasPartMass                    1.0e-04
-TargetGasMassFactor                     1
-RefinementCriterion                     1
-DerefinementCriterion                   1
 
 %-------------------------------------- Hydrodynamics
 LimitUBelowThisDensity                  0.0
@@ -101,18 +92,7 @@ SofteningTypeOfPartType2                1
 SofteningTypeOfPartType3                1
 SofteningTypeOfPartType4                1
 SofteningTypeOfPartType5                1
-MinimumComovingHydroSoftening           0.3
-AdaptiveHydroSofteningSpacing           1.1
 
 %-------------------------------------- Cooling and star formation
-CoolingOn                               1
-StarformationOn                         1
-TreecoolFile                            ./cooling_tables/TREECOOL
-CritOverDensity                         577                            % The critical physical density for star formation (in cm^-3) comoving integrations.
-TemperatureThresh                       1.0e20
-CritPhysDensity                         0.318                          % The critical physical density for star formation (in cm^-3).
-FactorSN                                0.1
-FactorEVP                               573.0
-TempSupernova                           5.73e7                         % 5.73e7 K
-TempClouds                              1000.0                         % 1000 K
-MaxSfrTimescale                         1.5                            % ~1.5 Gyr
+CoolingOn                               0
+StarformationOn                         0

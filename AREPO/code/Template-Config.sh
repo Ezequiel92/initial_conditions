@@ -219,3 +219,6 @@
 #--------------------------------------- Mesh-relaxing or mesh-adding (this will not carry out a simulation)
 #MESHRELAX                     # this keeps the mass constant and only regularizes the mesh
 #ADDBACKGROUNDGRID=16          # re-grid hydrodynamics quantities on a Oct-tree AMR grid. This does not perform a simulation.
+
+#--------------------------------------- My star formation model
+#EZ_SFR                        # uses my model to compute the star fraction in star forming gas cell

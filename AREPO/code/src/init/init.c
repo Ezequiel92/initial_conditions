@@ -40,10 +40,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "../domain/domain.h"
 #include "../main/allvars.h"
 #include "../main/proto.h"
-
-#include "../domain/domain.h"
 #include "../mesh/voronoi/voronoi.h"
 
 /*! \brief Prepares the loaded initial conditions for the run.
@@ -165,7 +164,7 @@ int init(void)
     for(j = 0; j < GRAVCOSTLEVELS; j++)
       P[i].GravCost[j] = 0;
 
-      /* set unused coordinate values in 1d and 2d simulations to zero; this is needed for correct interfaces */
+  /* set unused coordinate values in 1d and 2d simulations to zero; this is needed for correct interfaces */
   int nonzero_vel = 0;
 #ifdef ONEDIMS
   for(i = 0; i < NumPart; i++)
@@ -174,14 +173,14 @@ int init(void)
       P[i].Pos[2] = 0.0;
 
       if(P[i].Vel[1] != 0.0 || P[i].Vel[2] != 0.0)
-      {
-   	    nonzero_vel = 1;
-      }
+        {
+          nonzero_vel = 1;
+        }
     }
   if(nonzero_vel > 0)
-  {
-    warn("Initial y or z velocity nonzero in 1d simulation! Make sure you really want this!");
-  }
+    {
+      warn("Initial y or z velocity nonzero in 1d simulation! Make sure you really want this!");
+    }
 #endif /* #ifdef ONEDIMS */
 
 #ifdef TWODIMS
@@ -190,14 +189,14 @@ int init(void)
       P[i].Pos[2] = 0;
 
       if(P[i].Vel[2] != 0.0)
-      {
-        nonzero_vel = 1;
-      }
+        {
+          nonzero_vel = 1;
+        }
     }
   if(nonzero_vel > 0)
-  {
-	warn("Initial z velocity nonzero in 2d simulation! Make sure you really want this!");
-  }
+    {
+      warn("Initial z velocity nonzero in 2d simulation! Make sure you really want this!");
+    }
 #endif /* #ifdef TWODIMS */
 
   if(All.ComovingIntegrationOn) /*  change to new velocity variable */
@@ -559,6 +558,18 @@ int init(void)
   int xaxis, yaxis, zaxis, weight_flag = 0;
   double xmin, xmax, ymin, ymax, zmin, zmax;
 #endif /* #if !defined(ONEDIMS) && !defined(TWODIMS) */
+
+#ifdef EZ_SFR
+  /* initialize gas fractions to -1 to mark cells which had no star formation whatsoever */
+  for(i = 0; i < NumGas; i++)
+    {
+      SphP[i].ionizedFrac   = -1;
+      SphP[i].atomicFrac    = -1;
+      SphP[i].molecularFrac = -1;
+      SphP[i].metalFrac     = -1;
+      SphP[i].stellarFrac   = -1;
+    }
+#endif /* #ifdef EZ_SFR */
 
   free_mesh();
 

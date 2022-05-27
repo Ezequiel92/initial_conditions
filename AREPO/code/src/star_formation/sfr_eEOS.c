@@ -44,8 +44,8 @@
 
 #include "../main/allvars.h"
 #include "../main/proto.h"
-
 #include "../gravity/forcetree.h"
+#include "../ez_sfr/ez_sfr.h"
 
 #ifdef USE_SFR
 
@@ -203,6 +203,11 @@ double get_starformation_rate(int i)
     return SphP[i].Sfr;
 
   double rateOfSF;
+
+#ifdef EZ_SFR
+  rateOfSF = rate_of_star_formation(i);
+#else /* #ifdef EZ_SFR */
+
   int flag;
   double tsfr;
   double factorEVP, egyeff, ne, x, cloudmass;
@@ -238,6 +243,8 @@ double get_starformation_rate(int i)
 
   /* convert to solar masses per yr */
   rateOfSF *= (All.UnitMass_in_g / SOLAR_MASS) / (All.UnitTime_in_s / SEC_PER_YEAR);
+
+#endif /* #ifdef EZ_SFR */
 
   return rateOfSF;
 }

@@ -45,7 +45,6 @@
 
 #include "../main/allvars.h"
 #include "../main/proto.h"
-
 #include "../gravity/forcetree.h"
 
 #ifdef USE_SFR
@@ -79,7 +78,7 @@ void sfr_init()
  *
  *  This function loops over all the active gas cells. If in a given cell the
  *  SFR is greater than zero, the probability of forming a star is computed
- *  and the corresponding particle is created stichastically according to the
+ *  and the corresponding particle is created stochastically according to the
  *  model in Springel & Hernquist (2003, MNRAS). It also saves information
  *  about the formed stellar mass and the star formation rate in the file
  *  FdSfr.
@@ -422,7 +421,7 @@ void make_star(int idx, int i, double prob, MyDouble mass_of_star, double *sum_m
           /* in this case we spawn a new star particle, only reducing the mass in the cell by mass_of_star */
           altogether_spawned = stars_spawned;
           if(NumPart + altogether_spawned >= All.MaxPart)
-            terminate("NumPart=%d spwawn %d particles no space left (All.MaxPart=%d)\n", NumPart, altogether_spawned, All.MaxPart);
+            terminate("NumPart=%d spawn %d particles no space left (All.MaxPart=%d)\n", NumPart, altogether_spawned, All.MaxPart);
 
           int j = NumPart + altogether_spawned; /* index of new star */
 
