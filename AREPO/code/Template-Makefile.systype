@@ -5,5 +5,10 @@
 # a new system.
 
 #SYSTYPE="Darwin"
+#SYSTYPE="Ubuntu"
+#SYSTYPE="Tupac"
+#SYSTYPE="Dirac"
+#SYSTYPE="RAVEN"
+SYSTYPE="FREYA"
 
 #determine SYSTYPE#

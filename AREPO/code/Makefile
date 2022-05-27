@@ -3,15 +3,16 @@
 #
 # If you add a new system below, also add that systype to Template-Makefile.systype
 
-EXEC   = Arepo
+EXEC = Arepo
 LIBRARY = arepo
-CONFIG   = Config.sh
+CONFIG = Config.sh
 BUILD_DIR = build
 SRC_DIR = src
 
-###################
-#determine SYSTYPE#
-###################
+#####################
+# Determine SYSTYPE #
+#####################
+
 ifdef SYSTYPE
 SYSTYPE := "$(SYSTYPE)"
 -include Makefile.systype
@@ -44,101 +45,119 @@ GSL_LIB    = -lgsl -lgslcblas
 MATH_LIB   = -lm -lstdc++
 HWLOC_LIB  = -lhwloc
 
-
-# e.g. Mac OS using MacPorts modules for openmpi, fftw, gsl, hdf5 and hwloc
+# MacOS
 ifeq ($(SYSTYPE),"Darwin")
-# compiler and its optimization options
-CC        =  mpicc   # sets the C-compiler
+CC        =  mpicc
 OPTIMIZE  =  -std=c11 -ggdb -O3 -Wall -Wno-format-security -Wno-unknown-pragmas -Wno-unused-function
 
-# overwrite default:
 MPICH_LIB = -lmpi
 GSL_INCL  = -I/opt/local/include
 GSL_LIB   = -L/opt/local/lib -lgsl -lgslcblas
+HWLOC_INCL= -I/opt/local/include
 HWLOC_LIB = -L/opt/local/lib -lhwloc
-
-# libraries that are included on demand, depending on Config.sh options
 FFTW_INCL = -I/opt/local/include -I/usr/local/include
 FFTW_LIBS = -L/opt/local/lib -I/usr/local/lib
 HDF5_INCL = -I/opt/local/include -DH5_USE_16_API
 HDF5_LIB  = -L/opt/local/lib  -lhdf5 -lz
-HWLOC_INCL= -I/opt/local/include
 endif
 # end of Darwin
 
-# Ubuntu Linux
+# Ubuntu
 ifeq ($(SYSTYPE),"Ubuntu")
-# compiler and its optimization options
 OPTIMIZE  =  -std=c11 -ggdb -O3 -Wall -Wno-format-security -Wno-unknown-pragmas -Wno-unused-function
 
-# overwrite default:
 MPICH_INCL= -I/usr/lib/x86_64-linux-gnu/openmpi/include/
 MPICH_LIB = -L/usr/lib/x86_64-linux-gnu/openmpi/lib/ -lmpi
 GSL_INCL  =
 GSL_LIB   = -lgsl -lgslcblas
+HWLOC_INCL=
 HWLOC_LIB = -lhwloc
-
-# libraries that are included on demand, depending on Config.sh options
 FFTW_INCL =
 FFTW_LIBS =
 HDF5_INCL = -I/usr/include/hdf5/serial/ -DH5_USE_16_API
 HDF5_LIB  = -L/usr/lib/x86_64-linux-gnu/hdf5/serial/ -lhdf5 -lz
-HWLOC_INCL=
 endif
 # end of Ubuntu
 
+# Dirac
 ifeq ($(SYSTYPE),"Dirac")
-# compiler and its optimization options
 CC        =  mpicc 
 OPTIMIZE  =  -std=c11 -O3
 
-# overwrite default:
 MPICH_LIB = -lmpi
 GSL_INCL  = -I/opt/ohpc/pub/libs/gnu10/gsl/2.6/include
 GSL_LIB   = -L/opt/ohpc/pub/libs/gnu10/gsl/2.6/lib -lgsl -lgslcblas
+HWLOC_INCL= -I/opt/ohpc/pub/libs/hwloc/1.11.10/include
 HWLOC_LIB = -L/opt/ohpc/pub/libs/hwloc/1.11.10/lib -lhwloc
-
-# libraries that are included on demand, depending on Config.sh options:
 FFTW_INCL = -I/opt/ohpc/pub/libs/gnu10/openmpi4/fftw/3.3.10/include
 FFTW_LIBS = -L/opt/ohpc/pub/libs/gnu10/openmpi4/fftw/3.3.10/lib
 HDF5_INCL = -I/opt/ohpc/pub/libs/gnu10/hdf5/1.10.7/include -DH5_USE_16_API
 HDF5_LIB  = -L/opt/ohpc/pub/libs/gnu10/hdf5/1.10.7/lib -lhdf5 -lz
-HWLOC_INCL= -I/opt/ohpc/pub/libs/hwloc/1.11.10/include
 endif
 # end of Dirac
 
+# Tupac
 ifeq ($(SYSTYPE),"Tupac")
-# compiler and its optimization options
 CC        =  mpicc 
 OPTIMIZE  =  -std=c11 -O3
 
-# overwrite default:
 MPICH_LIB = -lmpi
 GSL_INCL  = -I/nfs/home/cscannapieco/libraries/GSL-2.3/include
 GSL_LIB   = -L/nfs/home/cscannapieco/libraries/GSL-2.3/lib/ -lgsl -lgslcblas
+HWLOC_INCL= 
 HWLOC_LIB = 
-
-# libraries that are included on demand, depending on Config.sh options:
 FFTW_INCL = -I/nfs/soft/r6/gcc-6.4.0/fftw/3.3.8/include
 FFTW_LIBS = -L/nfs/soft/r6/gcc-6.4.0/fftw/3.3.8/lib
 HDF5_INCL = 
-HDF5_LIB  = 
-HWLOC_INCL= 
+HDF5_LIB  =
 endif
 # end of Tupac
 
+# RAVEN
+ifeq ($(SYSTYPE),"RAVEN")
+CC        =  mpiicc -std=c11 -Wall -Werror
+OPTIMIZE  =  -O3 -xICELAKE-SERVER -qopt-zmm-usage=high -fp-model=precise
 
-# insert the library paths for your system here, similar to SYSTYPE "Darwin" above
+MPICH_LIB = -lmpi
+GSL_INCL  = -I$(GSL_HOME)/include
+GSL_LIB   = -L$(GSL_HOME)/lib -lgsl -lgslcblas -Wl,-rpath,$(GSL_HOME)/lib
+HWLOC_INCL= -I$(HWLOC_HOME)/include
+HWLOC_LIB = -L$(HWLOC_HOME)/lib -lhwloc -Wl,-rpath,$(HWLOC_HOME)/lib
+FFTW_INCL = -I$(FFTW_HOME)/include
+FFTW_LIBS = -L$(FFTW_HOME)/lib -Wl,-rpath,$(FFTW_HOME)/lib
+HDF5_INCL = -I$(HDF5_HOME)/include -DH5_USE_16_API
+HDF5_LIB  = -L$(HDF5_HOME)/lib -lhdf5 -lz -Wl,-rpath,$(HDF5_HOME)/lib
+endif
+# end of RAVEN
+
+# FREYA
+ifeq ($(SYSTYPE),"FREYA")
+CC        =  mpiicc -std=c11 -Wall -Werror
+OPTIMIZE  =  -O3 -xCORE-AVX512 -qopt-zmm-usage=high -fp-model=precise
+
+MPICH_LIB = -lmpi
+GSL_INCL  = -I$(GSL_HOME)/include
+GSL_LIB   = -L$(GSL_HOME)/lib -lgsl -lgslcblas -Wl,-rpath,$(GSL_HOME)/lib
+HWLOC_INCL= -I$(HWLOC_HOME)/include
+HWLOC_LIB = -L$(HWLOC_HOME)/lib -lhwloc -Wl,-rpath,$(HWLOC_HOME)/lib
+FFTW_INCL = -I$(FFTW_HOME)/include
+FFTW_LIBS = -L$(FFTW_HOME)/lib -Wl,-rpath,$(FFTW_HOME)/lib
+HDF5_INCL = -I$(HDF5_HOME)/include -DH5_USE_16_API
+HDF5_LIB  = -L$(HDF5_HOME)/lib -lhdf5 -lz -Wl,-rpath,$(HDF5_HOME)/lib
+endif
+# end of FREYA
+
+
+# Insert the library paths for your system here, similar to SYSTYPE "Darwin" above
 
 
 ifndef LINKER
 LINKER = $(CC)
 endif
 
-
-##########################################
-#determine the needed object/header files#
-##########################################
+############################################
+# Determine the needed object/header files #
+############################################
 
 SUBDIRS = . \
           debug_md5 \
@@ -326,15 +345,14 @@ INCL	+= subfind/subfind.h
 SUBDIRS += subfind
 endif
 
+##################################
+# Determine the needed libraries #
+##################################
 
-################################
-#determine the needed libraries#
-################################
-
-# we only need fftw if PMGRID is turned on, make sure variable is empty otherwise
+# We only need fftw if PMGRID is turned on, make sure variable is empty otherwise
 FFTW_LIB =
 ifeq (PMGRID, $(findstring PMGRID, $(CONFIGVARS)))
-ifeq (DOUBLEPRECISION_FFTW,$(findstring DOUBLEPRECISION_FFTW,$(CONFIGVARS)))  # test for double precision libraries
+ifeq (DOUBLEPRECISION_FFTW,$(findstring DOUBLEPRECISION_FFTW,$(CONFIGVARS)))  # Test for double precision libraries
 FFTW_LIB = $(FFTW_LIBS) -lfftw3
 else
 FFTW_LIB = $(FFTW_LIBS) -lfftw3f
@@ -351,10 +369,9 @@ HWLOC_INCL =
 HWLOC_LIB =
 endif
 
-
-##########################
-#combine compiler options#
-##########################
+############################
+# Combine compiler options #
+############################
 
 CFLAGS = $(OPTIMIZE) $(MPICH_INCL) $(HDF5_INCL) $(GSL_INCL) $(FFTW_INCL) $(HWLOC_INCL) -I$(BUILD_DIR)
 
@@ -362,7 +379,6 @@ LIBS = $(GMP_LIB) $(MATH_LIB) $(MPICH_LIB) $(HDF5_LIB) $(GSL_LIB) $(FFTW_LIB) $(
 
 FOPTIONS = $(OPTIMIZE)
 FFLAGS = $(FOPTIONS)
-
 
 SUBDIRS := $(addprefix $(BUILD_DIR)/,$(SUBDIRS))
 OBJS := $(addprefix $(BUILD_DIR)/,$(OBJS)) $(BUILD_DIR)/compile_time_info.o $(BUILD_DIR)/compile_time_info_hdf5.o $(BUILD_DIR)/version.o
@@ -374,15 +390,15 @@ CONFIG_CHECK = $(BUILD_DIR)/$(notdir $(CONFIG)).check
 
 DOCS_CHECK = $(BUILD_DIR)/README.check
 
-################
-#create subdirs#
-################
+##################
+# Create subdirs #
+##################
+
 RESULT := $(shell mkdir -p $(SUBDIRS)  )
 
-
-#############
-#build rules#
-#############
+###############
+# Build rules #
+###############
 
 all: check build
 
@@ -414,7 +430,7 @@ $(BUILD_DIR)/compile_time_info_hdf5.o: $(BUILD_DIR)/compile_time_info_hdf5.c $(M
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cu $(INCL) $(MAKEFILES)
 	$(NVCC)  -c $< -o $@
 
-# sanity checks:
+# Sanity checks:
 
 check: $(CONFIG_CHECK)
 

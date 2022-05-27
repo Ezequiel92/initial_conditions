@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.19.0
+# v0.19.5
 
 using Markdown
 using InteractiveUtils
@@ -138,10 +138,10 @@ end;
 # ╔═╡ 6ea6a52d-1ee4-4069-a5ca-4b0021a7b69c
 # Write an IC file in HDF5 format for GADGET (SnapFormat=3 in GADGET)
 h5open(out_file * ".hdf5", "w") do fh5
-	g0 = create_group(fh5, "ParticleType0")
-	g1 = create_group(fh5, "ParticleType1")
-	g2 = create_group(fh5, "ParticleType2")
-	g3 = create_group(fh5, "ParticleType3")
+	g0 = create_group(fh5, "PartType0")
+	g1 = create_group(fh5, "PartType1")
+	g2 = create_group(fh5, "PartType2")
+	g3 = create_group(fh5, "PartType3")
 	head = create_group(fh5, "Header")
 		
 	g0["Coordinates"] = collect(pos[:, 1:s0]')
@@ -166,6 +166,16 @@ h5open(out_file * ".hdf5", "w") do fh5
 	write_attribute(head, "Redshift", header.z)
 	write_attribute(head, "BoxSize", header.boxsize)
 	write_attribute(head, "NumFilesPerSnapshot", header.num_files)
+	write_attribute(head, "NumPart_Total_HighWord", header.npartTotalHighWord)
+	write_attribute(head, "Omega0", header.omega_0)
+    write_attribute(head, "OmegaLambda", header.omega_l)
+    write_attribute(head, "HubbleParam", header.h0)
+	write_attribute(head, "Flag_Sfr", header.flag_sfr)
+	write_attribute(head, "Flag_Cooling", header.flag_cooling)
+	write_attribute(head, "Flag_StellarAge", header.flag_stellarage)
+	write_attribute(head, "Flag_Feedback", header.flag_feedback)
+	write_attribute(head, "Flag_DoublePrecision", header.flag_doubleprecision)
+	write_attribute(head, "Flag_Metals", header.flag_metals)
 end;
 
 # ╔═╡ 39f2147d-ac35-4b14-ade6-ee07d17f84c6
@@ -189,8 +199,8 @@ begin
 	))
 
 	h5open(out_file * ".hdf5", "r") do fh5
-		hdf5_pos = fh5["ParticleType0/Coordinates"][150:160, 2] * GU.x_physical
-		hdf5_vel = fh5["ParticleType0/Velocities"][150:160, 2] * GU.v_physical
+		hdf5_pos = fh5["PartType0/Coordinates"][150:160, 2] * GU.x_physical
+		hdf5_vel = fh5["PartType0/Velocities"][150:160, 2] * GU.v_physical
 
 		@assert all(
 			isapprox.(rawIC_type0[150:160, 2], ustrip(hdf5_pos), rtol = 10^-5)
@@ -214,7 +224,7 @@ UnitfulAstro = "6112ee07-acf9-5e0f-b108-d242c714bf9f"
 [compat]
 GadgetIO = "~0.5.9"
 GadgetUnits = "~0.2.2"
-HDF5 = "~0.16.7"
+HDF5 = "~0.16.9"
 Unitful = "~1.11.0"
 UnitfulAstro = "~1.1.1"
 """
@@ -274,9 +284,9 @@ version = "1.0.1"
 
 [[deps.DataStructures]]
 deps = ["Compat", "InteractiveUtils", "OrderedCollections"]
-git-tree-sha1 = "3daef5523dd2e769dad2365274f760ff5f282c7d"
+git-tree-sha1 = "d1fff3a548102f48987a52a2e0d114fa97d730f0"
 uuid = "864edb3b-99cc-5e75-8d2d-829cb0a9cfe8"
-version = "0.18.11"
+version = "0.18.13"
 
 [[deps.Dates]]
 deps = ["Printf"]
@@ -298,15 +308,15 @@ version = "0.8.6"
 
 [[deps.Documenter]]
 deps = ["ANSIColoredPrinters", "Base64", "Dates", "DocStringExtensions", "IOCapture", "InteractiveUtils", "JSON", "LibGit2", "Logging", "Markdown", "REPL", "Test", "Unicode"]
-git-tree-sha1 = "6edbf28671b4df4f692e54ae72f1e35851cfbf38"
+git-tree-sha1 = "122d031e8dcb2d3e767ed434bc4d1ae1788b5a7f"
 uuid = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
-version = "0.27.16"
+version = "0.27.17"
 
 [[deps.DocumenterTools]]
-deps = ["AbstractTrees", "Base64", "DocStringExtensions", "Documenter", "FileWatching", "Gumbo", "LibGit2", "Sass"]
-git-tree-sha1 = "d0574a2a4950fdcde104b7f3d1b34f0417fa9f10"
+deps = ["AbstractTrees", "Base64", "DocStringExtensions", "Documenter", "FileWatching", "Gumbo", "LibGit2", "OpenSSH_jll", "Sass"]
+git-tree-sha1 = "b7973759b8428ff689b58ef11a1f6942a08a47f3"
 uuid = "35a29f4d-8980-5a13-9543-d66fff28ecb8"
-version = "0.1.13"
+version = "0.1.14"
 
 [[deps.Downloads]]
 deps = ["ArgTools", "LibCURL", "NetworkOptions"]
@@ -345,9 +355,9 @@ version = "0.10.2+0"
 
 [[deps.HDF5]]
 deps = ["Compat", "HDF5_jll", "Libdl", "Mmap", "Random", "Requires"]
-git-tree-sha1 = "36df177c1ce5f399a8de959e5f4b75216fe6c834"
+git-tree-sha1 = "e6b1bd8339b2af5a4c2e3103f9dda65de355127e"
 uuid = "f67ccb44-e63f-5c2f-98bd-6dc0ccc4ba2f"
-version = "0.16.7"
+version = "0.16.9"
 
 [[deps.HDF5_jll]]
 deps = ["Artifacts", "JLLWrappers", "LibCURL_jll", "Libdl", "OpenSSL_jll", "Pkg", "Zlib_jll"]
@@ -429,6 +439,12 @@ uuid = "ca575930-c2e3-43a9-ace4-1e988b2c1908"
 [[deps.OpenBLAS_jll]]
 deps = ["Artifacts", "CompilerSupportLibraries_jll", "Libdl"]
 uuid = "4536629a-c528-5b80-bd46-f80d51c5b363"
+
+[[deps.OpenSSH_jll]]
+deps = ["Artifacts", "JLLWrappers", "Libdl", "OpenSSL_jll", "Pkg", "Zlib_jll"]
+git-tree-sha1 = "1b2f042897343a9dfdcc9366e4ecbd3d00780c49"
+uuid = "9bd350c2-7e96-507f-8002-3f2e150b4e1b"
+version = "8.9.0+1"
 
 [[deps.OpenSSL_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
