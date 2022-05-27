@@ -21,7 +21,8 @@
 
 mpiexec -np $SLURM_NPROCS ../build/Arepo param.txt
 
-filename="${1##*/}"
-mv -f $1-with-grid.hdf5 ./output/${filename%.*}.hdf5
-
-rm -rf ./build ./code/param.txt-usedvalues ./code/WARNINGS ./code/uses-machines.txt
+if [ $? -eq 0 ]; then
+    filename="${1##*/}"
+    mv -f $1-with-grid.hdf5 ./output/${filename%.*}.hdf5
+    rm -rf ./build ./code/param.txt-usedvalues ./code/WARNINGS ./code/uses-machines.txt
+fi
