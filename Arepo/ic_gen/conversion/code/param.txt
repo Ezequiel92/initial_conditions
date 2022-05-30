@@ -40,10 +40,10 @@ TimeMax	                                2.0                            % ~2 Gyr
 
 %-------------------------------------- Cosmological parameters
 ComovingIntegrationOn                   0
-Omega0                                  0.3089
-OmegaBaryon                             0.0486
+Omega0                                  1.0
+OmegaBaryon                             0.15733                        % ~15% of of each DM particle mass will be converted into gas
 OmegaLambda                             0.0
-HubbleParam                             0.6774
+HubbleParam                             1.0
 
 %-------------------------------------- System of units
 UnitVelocity_in_cm_per_s                1e5                            % 1 km/sec
