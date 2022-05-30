@@ -5,7 +5,7 @@
 #SBATCH --error=../output/stderr_%j     
 #SBATCH --mail-user=lozano@mpa-garching.mpg.de
 #SBATCH --mail-type=ALL,TIME_LIMIT_90
-#SBATCH --time=00:05:00
+#SBATCH --time=00:15:00
 #SBATCH --no-requeue
 
 # Total number of threads = nodes * ntasks-per-node
@@ -17,7 +17,7 @@
 #SBATCH --ntasks-per-node=1
 
 # Memory per node in megabytes
-#SBATCH --mem=4G
+#SBATCH --mem=16G
 
 mpiexec -np $SLURM_NPROCS ../build/Arepo param.txt
 

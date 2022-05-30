@@ -25,12 +25,12 @@ TimeBetStatistics                       0.01                           % ~0.01 G
 TimeOfFirstSnapshot                     0.0 
 
 %-------------------------------------- CPU-time limit and restarts
-TimeLimitCPU                            300                           % 300 s = 5 min
+TimeLimitCPU                            300                            % 300 s = 5 min
 ResubmitOn                              0
 ResubmitCommand                         ./resubmit_job.sh
 
 %-------------------------------------- Memory allocation
-MaxMemSize                              3800                           % ~95% of the memory per MPI tasks in one node
+MaxMemSize                              15200                          % ~95% of the memory per MPI tasks in one node
 
 %-------------------------------------- Simulated time span and spatial extent
 BoxSize                                 300000.0                       % ~300000 kpc = 300 Mpc
