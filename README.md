@@ -19,5 +19,7 @@ Initial conditions for hydrodynamical simulations.
 
 # Gadget
 
-- ICs: Initial conditions for P-Gadget3 in `ICFormat = 1` (binary files). The number in the filename indicates the number of particles in one dimension, e.g. `gassphere_32.dat` has $\sim 32^3 / 2$ dark matter particles and $\sim 32^3 / 2$ gas particles.
+- ICs:
+  - Initial conditions for P-Gadget3 in `ICFormat = 1` (binary files). The number in the filename indicates the number of particles in one dimension, e.g. `gassphere_32.dat` has $\sim 32^3 / 2$ dark matter particles and $\sim 32^3 / 2$ gas particles.
+  - Initial conditions for P-Gadget3 in `ICFormat = 3` (HDF5), with only dark matter particles. The number in the filename indicates the number of dark matter particles in one dimension, e.g. `dm_32.hdf5` has $32^3$ dark matter particles.
 - AGORA_project: [Pluto](https://github.com/fonsp/Pluto.jl) notebook for converting between initial conditions (IC) formats. It goes from a human readable `.dat` file (from the [AGORA](https://sites.google.com/site/santacruzcomparisonproject/data) project) to the binary format (`SnapFormat` = 2) or the HDF5 format (`SnapFormat` = 3), both for Gadget.
