@@ -8,12 +8,13 @@ chmod -R 744 ../code
 export SYSTYPE=FREYA
 
 if [ ${HOSTNAME::-2} = "raven" ] || [ ${HOSTNAME::-2} = "freya" ]; then
-	module purge
-	module load gcc/9
-	module load gsl fftw-serial/3.3.8 hdf5-serial
+	module --silent purge
+    module --silent load gcc/11 
+    module --silent load openmpi
+    module --silent load gsl
+    module --silent load fftw-mpi
+    module --silent load hdf5-mpi/1.12.1
 fi
-
-export PATH=/u/vrs/Libs/openmpi-4.0.7/bin:$PATH
 
 make -j8 CONFIG=./Config.sh BUILD_DIR=../build EXEC=../build/Arepo
 

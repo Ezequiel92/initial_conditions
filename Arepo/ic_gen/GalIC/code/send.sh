@@ -2,6 +2,7 @@
 
 mkdir --mode=764 -p ../build 
 mkdir --mode=764 -p ../output
+mkdir --mode=764 -p ../../conversion/ICs
 
 chmod -R 764 ../code
 

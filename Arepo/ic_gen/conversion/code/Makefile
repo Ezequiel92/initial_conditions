@@ -49,7 +49,7 @@ HWLOC_LIB  = -lhwloc
 ifeq ($(SYSTYPE),"RAVEN")
 CC        = mpicc -std=c11 -Wall
 CC       += -Wno-unused-function -Wno-unused-but-set-variable -Wno-unused-variable 
-CC       += -Wno-stringop-truncation -Wno-restrict -Wno-maybe-uninitialized -Wno-format-overflow
+CC       += -Wno-stringop-truncation -Wno-restrict -Wno-maybe-uninitialized -Wno-format-overflow -Wno-array-parameter
 OPTIMIZE  = -O3 -march=icelake-server
 
 MPICH_LIB = -lmpi
@@ -68,7 +68,7 @@ endif
 ifeq ($(SYSTYPE),"FREYA")
 CC        = mpicc -std=c11 -Wall
 CC       += -Wno-unused-function -Wno-unused-but-set-variable -Wno-unused-variable 
-CC       += -Wno-stringop-truncation -Wno-restrict -Wno-maybe-uninitialized -Wno-format-overflow
+CC       += -Wno-stringop-truncation -Wno-restrict -Wno-maybe-uninitialized -Wno-format-overflow -Wno-array-parameter
 OPTIMIZE  = -O3 -march=skylake-avx512
 
 MPICH_LIB = -lmpi

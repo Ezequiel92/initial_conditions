@@ -40,7 +40,7 @@ MATHLIB  = -lm
 ifeq ($(SYSTYPE),"RAVEN")
 CC        = mpicc -std=c11 -Wall
 CC       += -Wno-unused-function -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unknown-pragmas
-CC       += -Wno-stringop-truncation -Wno-restrict -Wno-maybe-uninitialized -Wno-format-overflow -Wno-array-parameter=
+CC       += -Wno-stringop-truncation -Wno-restrict -Wno-maybe-uninitialized -Wno-format-overflow -Wno-array-parameter
 OPTIMIZE  = -O3 -march=icelake-server
 
 MPICHLIB  = -lmpi
@@ -57,7 +57,7 @@ endif
 ifeq ($(SYSTYPE),"FREYA")
 CC        = mpicc -std=c11 -Wall
 CC       += -Wno-unused-function -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unknown-pragmas
-CC       += -Wno-stringop-truncation -Wno-restrict -Wno-maybe-uninitialized -Wno-format-overflow -Wno-array-parameter=
+CC       += -Wno-stringop-truncation -Wno-restrict -Wno-maybe-uninitialized -Wno-format-overflow -Wno-array-parameter
 OPTIMIZE  = -O3 -march=skylake-avx512
 
 MPICHLIB  = -lmpi

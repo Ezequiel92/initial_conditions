@@ -29,6 +29,6 @@ if [ $? -eq 0 ]; then
         mv -f ../ICs/dm_ic-with-grid.hdf5 ../../${1}.hdf5
     fi
 
-    rm -rf ./param.txt-usedvalues ./WARNINGS ./uses-machines.txt ../ICs/* ../output ../build
+    rm -rf ./param.txt-usedvalues ./WARNINGS ./uses-machines.txt ../ICs ../output ../build
 	
 fi
