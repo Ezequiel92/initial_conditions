@@ -28,6 +28,10 @@ Only one IC file at a time can be converted. If the run is successful, there sho
 
 It goes from a human readable `.dat` file (from the [AGORA](https://sites.google.com/site/santacruzcomparisonproject/data) project) to the binary format (`SnapFormat` = 2) or the HDF5 format (`SnapFormat` = 3), both for Gadget.
 
+## ICs
+
+My initial conditions for isolated galaxies with $32^3$, $64^3$ and $128^3$ particles. All are for Gadget, and in `ICFormat = 1`.
+
 # HDF5 information
 
 [HDF5 Julia library](https://juliaio.github.io/HDF5.jl/stable/)
