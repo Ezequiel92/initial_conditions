@@ -1,6 +1,8 @@
 <div align="center">
-    <h1>💱 Initial conditions for hydrodynamical simulations</h1>
+    <h1>💱 Initial conditions</h1>
 </div>
+
+Initial conditions for hydrodynamical simulations.
 
 # Arepo
 
