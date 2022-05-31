@@ -30,7 +30,7 @@ ResubmitOn                              0
 ResubmitCommand                         ./resubmit_job.sh
 
 %-------------------------------------- Memory allocation
-MaxMemSize                              15200                          % ~95% of the memory per MPI tasks in one node
+MaxMemSize                              30000                          % ~95% of the memory per MPI tasks in one node
 
 %-------------------------------------- Simulated time span and spatial extent
 BoxSize                                 300000.0                       % ~300000 kpc = 300 Mpc
