@@ -5,7 +5,7 @@
 #SBATCH --error=../output/stderr_%j     
 #SBATCH --mail-user=lozano@mpa-garching.mpg.de
 #SBATCH --mail-type=ALL,TIME_LIMIT_90
-#SBATCH --time=01:00:00
+#SBATCH --time=02:00:00
 #SBATCH --no-requeue
 
 # Total number of threads = nodes * ntasks-per-node
