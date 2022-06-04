@@ -33,7 +33,7 @@ ResubmitCommand                         ./resubmit_job.sh
 MaxMemSize                              140000                         % ~95% of the memory per MPI tasks in one node
 
 %-------------------------------------- Simulated time span and spatial extent
-BoxSize                                 300000.0                       % ~300000 kpc = 300 Mpc
+BoxSize                                 3000.0                         % ~3 Mpc
 PeriodicBoundariesOn                    0
 TimeBegin                               0.0
 TimeMax	                                2.0                            % ~2 Gyr

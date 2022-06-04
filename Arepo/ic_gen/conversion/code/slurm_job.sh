@@ -25,8 +25,10 @@ if [ $? -eq 0 ]; then
 
     if [ $# -eq 0 ]; then
         mv -f ../ICs/dm_ic-with-grid.hdf5 ../../output_ic.hdf5
+        mv -f ../output/stdout_* ../../stdout.txt
     else
         mv -f ../ICs/dm_ic-with-grid.hdf5 ../../${1}.hdf5
+        mv -f ../output/stdout_* ../../stdout_${1}.txt
     fi
 
     rm -rf ./param.txt-usedvalues ./WARNINGS ./uses-machines.txt ../ICs ../output ../build
