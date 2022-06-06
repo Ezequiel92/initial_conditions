@@ -476,6 +476,11 @@ void SetOutputGasState(int i, double *ne_guess, double *nH0, double *coolrate)
   double rho = SphP[i].Density * All.cf_a3inv;
   double u   = dmax(All.MinEgySpec, SphP[i].Utherm);
 
+  /* update GasState as appropriate given compile-time options and cell properties */
+#if defined(USE_SFR)
+  sfr = get_starformation_rate(i);
+#endif /* #if defined(USE_SFR) */
+
   /* update DoCool */
   DoCool.u_old_input    = u;
   DoCool.rho_input      = rho;

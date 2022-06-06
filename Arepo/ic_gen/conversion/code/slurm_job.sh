@@ -16,7 +16,7 @@
 # Number of MPI tasks per node
 #SBATCH --ntasks-per-node=1
 
-# Memory per node in megabytes
+# Memory per node
 #SBATCH --mem=150G
 
 mpiexec -np $SLURM_NPROCS ../build/Arepo param.txt
@@ -24,11 +24,13 @@ mpiexec -np $SLURM_NPROCS ../build/Arepo param.txt
 if [ $? -eq 0 ]; then
 
     if [ $# -eq 0 ]; then
-        mv -f ../ICs/dm_ic-with-grid.hdf5 ../../output_ic.hdf5
-        mv -f ../output/stdout_* ../../stdout.txt
+        mv -f ../ICs/dm_ic-with-grid.hdf5 ../../output/ic.hdf5
+        mv -f ../ICs/dm_ic.hdf5 ../../output/ic_dm.hdf5
+        mv -f ../output/stdout_* ../../output/ic_stdout.txt
     else
-        mv -f ../ICs/dm_ic-with-grid.hdf5 ../../${1}.hdf5
-        mv -f ../output/stdout_* ../../${1}_stdout.txt
+        mv -f ../ICs/dm_ic-with-grid.hdf5 ../../output/${1}.hdf5
+        mv -f ../ICs/dm_ic.hdf5 ../../output/${1}_dm.hdf5
+        mv -f ../output/stdout_* ../../output/${1}_stdout.txt
     fi
 
     rm -rf ./param.txt-usedvalues ./WARNINGS ./uses-machines.txt ../ICs ../output ../build
