@@ -21,7 +21,7 @@ HaloStretch                             1.0           % Spherical halo: 1, prola
 BulgeStretch                            1.0           % Spherical bulge: 1, prolate distortion: < 1, otherwise oblate.
 
 %-------------------------------------- Particle numbers in target model
-N_HALO 	 32768 	 % Number of particles in dark halo.
+N_HALO 	                                32768 	      % Number of particles in dark halo.
 N_DISK                                  0             % Number of collisionless particles in disk.
 N_BULGE                                 0             % Number of bulge particles. 
 

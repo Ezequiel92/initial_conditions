@@ -66,7 +66,7 @@ DG_MaxLevel                             7
 EG_MaxLevel                             7
 FG_Nbin                                 256           % Number of bins for the acceleration grid in the R and z directions.
 OutermostBinEnclosedMassFraction        0.9           % Regulates the fraction of mass of the Hernquist halo that must be inside the grid (determines grid extension).
-InnermostBinEnclosedMassFraction        0.0000001     % Regulates the fraction of mass enclosed by the innermost bin.
+InnermostBinEnclosedMassFraction        0.00001       % Regulates the fraction of mass enclosed by the innermost bin.
 MaxVelInUnitsVesc                       0.9999        % Maximum allowed velocity in units of the local escape velocity.
 
 %-------------------------------------- Construction of target density field
