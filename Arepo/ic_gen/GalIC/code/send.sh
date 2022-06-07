@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Make enviroment folders
 mkdir --mode=764 -p ../build 
 mkdir --mode=764 -p ../output
 mkdir --mode=764 -p ../../output
@@ -7,6 +8,7 @@ mkdir --mode=764 -p ../../conversion/ICs
 
 chmod -R 764 ../../../ic_gen
 
+# Load modules
 if [ ${HOSTNAME::-2} = "raven" ] || [ ${HOSTNAME::-2} = "freya" ]; then
     module purge
     module --silent load gcc/11 
@@ -16,6 +18,7 @@ if [ ${HOSTNAME::-2} = "raven" ] || [ ${HOSTNAME::-2} = "freya" ]; then
     module --silent load hdf5-mpi/1.12.1
 fi
 
+# Set the correct running command and the system type varible
 if [ ${HOSTNAME::-2} = "raven" ]; then
     export SYSTYPE=RAVEN
 	sed -i "s&^mpiexec -np $SLURM_NPROCS&srun&" ./slurm_job.sh
@@ -24,6 +27,7 @@ elif [ ${HOSTNAME::-2} = "freya" ]; then
     sed -i "s&^srun&mpiexec -np $SLURM_NPROCS&" ./slurm_job.sh
 fi
 
+# Set the correct number of particles and the softening lenghts
 if [ $# -eq 0 ]; then
     NUMBER="32768"
 	HSML="0.3"
@@ -47,8 +51,10 @@ sed -i "s&^SofteningComovingType1.*&SofteningComovingType1 \t\t $HSML&" ../../co
 sed -i "s&^SofteningMaxPhysType0.*&SofteningMaxPhysType0 \t\t $HSML&" ../../conversion/code/param.txt
 sed -i "s&^SofteningMaxPhysType1.*&SofteningMaxPhysType1 \t\t $HSML&" ../../conversion/code/param.txt
 
+# Compile the code
 make -j8 CONFIG=./Config.sh BUILD_DIR=../build EXEC=../build/GalIC
 
+# Send the job to the cluster
 if [ $? -eq 0 ]; then
     sbatch ./slurm_job.sh
 fi

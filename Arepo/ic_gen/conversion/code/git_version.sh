@@ -1,9 +1,7 @@
 #!/bin/bash
 
-
 DATE=$(git log -n 1 2> /dev/null | head -n4 | grep "Date" | cut -d' ' -f4-)
 COMMIT=$(git log -n 1 2> /dev/null | head -n1 | grep "commit" | cut -d' ' -f2-)
-
 
 if  [[ $DATE == "" ]]
     then
@@ -14,8 +12,6 @@ if  [[ $COMMIT == "" ]]
     then
     COMMIT="unknown"
 fi
-
-
 
 if [ -f $BUILD_DIR/version.c ]
     then

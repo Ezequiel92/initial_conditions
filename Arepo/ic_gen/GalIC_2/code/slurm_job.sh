@@ -5,7 +5,7 @@
 #SBATCH --error=../output/stderr_%j    
 #SBATCH --mail-user=lozano@mpa-garching.mpg.de
 #SBATCH --mail-type=ALL,TIME_LIMIT_90
-#SBATCH --time=06:00:00
+#SBATCH --time=18:00:00
 #SBATCH --no-requeue
 
 # Total number of threads = nodes * ntasks-per-node
@@ -21,6 +21,7 @@
 
 mpiexec -np $SLURM_NPROCS ../build/GalIC param.txt
 
+# Move output file to the correct folder and clean everything else
 if [ $? -eq 0 ]; then
     mv -f ../output/dm_ic_010.hdf5 ../../conversion/ICs/dm_ic.hdf5
     rm -rf ./param.txt-usedvalues ./WARNINGS ./uses-machines.txt  ./forcetest.dat ../output ../build	
