@@ -1,4 +1,4 @@
-Arepo/ICs/large_box/isolated_128.hdf5
-Arepo/ICs/large_box/isolated_256.hdf5
-Gadget/ICs/ICFormat3/large_box/isolated_128_dm.hdf5
-Gadget/ICs/ICFormat3/large_box/isolated_256_dm.hdf5
+Arepo/ICs/*/isolated_128.hdf5
+Arepo/ICs/*/isolated_256.hdf5
+Gadget/ICs/ICFormat3/*/isolated_128_dm.hdf5
+Gadget/ICs/ICFormat3/*/isolated_256_dm.hdf5

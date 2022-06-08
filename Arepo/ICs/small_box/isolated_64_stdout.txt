@@ -1,0 +1,265 @@
+
+   __    ____  ____  ____  _____
+  /__\  (  _ \( ___)(  _ \(  _  )
+ /(__)\  )   / )__)  )___/ )(_)(
+(__)(__)(_)\_)(____)(__)  (_____)
+
+
+-------------------------------------------------------------------------------------------------------------------------
+AvailMem:	 Largest =  187739.85 Mb (on task=   0), Smallest =  187739.85 Mb (on task=   0), Average =  187739.85 Mb
+Total Mem:	 Largest =  192806.20 Mb (on task=   0), Smallest =  192806.20 Mb (on task=   0), Average =  192806.20 Mb
+Committed_AS:	 Largest =    5066.35 Mb (on task=   0), Smallest =    5066.35 Mb (on task=   0), Average =    5066.35 Mb
+SwapTotal:	 Largest =       0.00 Mb (on task=   0), Smallest =       0.00 Mb (on task=   0), Average =       0.00 Mb
+SwapFree:	 Largest =       0.00 Mb (on task=   0), Smallest =       0.00 Mb (on task=   0), Average =       0.00 Mb
+AllocMem:	 Largest =    5066.35 Mb (on task=   0), Smallest =    5066.35 Mb (on task=   0), Average =    5066.35 Mb
+-------------------------------------------------------------------------------------------------------------------------
+Task=0 has the maximum commited memory and is host: freya163
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This is Arepo, version Arepo public 1.0.
+
+Running with 1 MPI tasks.
+
+Apparently we're using 1 compute nodes (we have a minimum of 1 MPI tasks per node, and a maximum of 1)
+
+Code was compiled with settings:
+
+        ADDBACKGROUNDGRID=32
+        GRAVITY_NOT_PERIODIC
+        NSOFTTYPES=2
+        GENERATE_GAS_IN_ICS
+        HAVE_HDF5
+        HDF5_FILTERS
+
+Obtaining parameters from file 'param.txt':
+
+        InitCondFile                                      ../ICs/dm_ic
+        ICFormat                                          3
+        InitGasTemp                                       244.8
+        MinimumDensityOnStartUp                           1e-20
+        GridSize                                          32
+        OutputDir                                         ../output
+        SnapshotFileBase                                  snap
+        NumFilesPerSnapshot                               1
+        OutputListOn                                      0
+        OutputListFilename                                ./output_list.txt
+        SnapFormat                                        3
+        NumFilesWrittenInParallel                         1
+        CpuTimeBetRestartFile                             7200
+        TimeBetSnapshot                                   0.01
+        TimeBetStatistics                                 0.01
+        TimeOfFirstSnapshot                               0
+        TimeLimitCPU                                      300
+        ResubmitOn                                        0
+        ResubmitCommand                                   ./resubmit_job.sh
+        MaxMemSize                                        140000
+        BoxSize                                           3000
+        PeriodicBoundariesOn                              0
+        TimeBegin                                         0
+        TimeMax                                           2
+        ComovingIntegrationOn                             0
+        Omega0                                            1
+        OmegaBaryon                                       0.15733
+        OmegaLambda                                       0
+        HubbleParam                                       1
+        UnitVelocity_in_cm_per_s                          100000
+        UnitLength_in_cm                                  3.08568e+21
+        UnitMass_in_g                                     1.989e+43
+        GravityConstantInternal                           0
+        TypeOfOpeningCriterion                            1
+        ErrTolTheta                                       0.7
+        ErrTolForceAcc                                    0.0025
+        TypeOfTimestepCriterion                           0
+        ErrTolIntAccuracy                                 0.012
+        MaxSizeTimestep                                   0.0001
+        MinSizeTimestep                                   1e-09
+        CourantFac                                        0.3
+        ActivePartFracForNewDomainDecomp                  0.01
+        MultipleDomains                                   2
+        TopNodeFactor                                     4
+        DesNumNgb                                         64
+        MaxNumNgbDeviation                                4
+        CellShapingFactor                                 1
+        CellShapingSpeed                                  0.5
+        LimitUBelowThisDensity                            0
+        LimitUBelowCertainDensityToThisValue              0
+        MinGasTemp                                        20
+        MinEgySpec                                        0
+        GasSoftFactor                                     2.5
+        SofteningComovingType0                            0.15
+        SofteningComovingType1                            0.15
+        SofteningMaxPhysType0                             0.15
+        SofteningMaxPhysType1                             0.15
+        SofteningTypeOfPartType0                          0
+        SofteningTypeOfPartType1                          1
+        SofteningTypeOfPartType2                          1
+        SofteningTypeOfPartType3                          1
+        SofteningTypeOfPartType4                          1
+        SofteningTypeOfPartType5                          1
+        CoolingOn                                         0
+        StarformationOn                                   0
+
+BEGRUN: Size of particle structure        80  [bytes]
+BEGRUN: Size of sph particle structure   160  [bytes]
+BEGRUN: Size of gravity tree node         48  [bytes]
+BEGRUN: Hubble (internal units)   = 0.1
+BEGRUN: G (internal units)        = 43018.7
+BEGRUN: UnitMass_in_g             = 1.989e+43
+BEGRUN: UnitTime_in_s             = 3.08568e+16
+BEGRUN: UnitVelocity_in_cm_per_s  = 100000
+BEGRUN: UnitDensity_in_cgs        = 6.76991e-22
+BEGRUN: UnitEnergy_in_cgs         = 1.989e+53
+
+BEGRUN: MinEgySpec set to 0.203058 based on MinGasTemp=20
+INIT: 5/5 Gradients used.
+GENERATE_GAS_IN_ICS: generated 262144 gas particles from type 1
+READIC: Reading file `../ICs/dm_ic.hdf5' on task=0 and distribute it to 0 to 0 (contains 262144 particles).
+ALLOCATE: initial allocation for MaxPart = 327680
+ALLOCATE: initial allocation for MaxPartSph = 327680
+
+READIC: filenr=0, '../ICs/dm_ic.hdf5' contains:
+READIC: Type 0 (gas):          0  (tot=              0) masstab= 0
+READIC: Type 1 (halo):    262144  (tot=         262144) masstab= 0
+READIC: Type 2 (disk):         0  (tot=              0) masstab= 0
+READIC: Type 3 (bulge):        0  (tot=              0) masstab= 0
+READIC: Type 4 (stars):        0  (tot=              0) masstab= 0
+READIC: Type 5 (bndry):        0  (tot=              0) masstab= 0
+
+READIC: reading block 0 (Coordinates)...
+READIC: reading block 1 (Velocities)...
+READIC: reading block 2 (ParticleIDs)...
+READIC: reading block 3 (Masses)...
+READIC: reading block 4 (InternalEnergy)...
+READIC: reading block 5 (Density)...
+ALLOCATE: Changing to MaxPart = 655360
+READIC: Initializing u from InitGasTemp!
+READIC: reading done (took 0.129934 sec).
+READIC: Total number of particles :  524288
+
+INIT: MeanVolume=102997
+INIT: Testing ID uniqueness...
+INIT: success.  took=0.0282354 sec
+VORONOI: init connectivity
+VORONOI: done with init of connectivity
+
+
+ADD BACKGROUND GRID: preparing domain for first domain decomposition
+ADD BACKGROUND GRID: original value of GridSize =  32
+ADD BACKGROUND GRID: closest power of two corresponding to GridSize = 32 is taken as initial guess
+ADD BACKGROUND GRID: Min and max coordinates.
+ADD BACKGROUND GRID: xmin|ymin|zmin=-644.971|-642.659|-646.825.
+ADD BACKGROUND GRID: xmax|ymax|zmax= 638.634| 637.854| 635.451.
+ADD BACKGROUND GRID: xmin_gas|ymin_gas|zmin_gas=-644.971|-642.659|-646.825.
+ADD BACKGROUND GRID: xmax_gas|ymax_gas|zmax_gas= 623.904| 623.124| 620.721.
+ADD BACKGROUND GRID: Domain extent 1283.6, BoxSize = 3000, ratio = 0.427868
+ADD BACKGROUND GRID: Gas extent 1268.88, BoxSize = 3000, ratio = 0.422958
+ADD BACKGROUND GRID: GridSize= 32, min_topleave_num=  2479, NTask=     1, BoxSize/GridSize=93.75, len_gas/GridSize=0.422958
+ADD BACKGROUND GRID: Need to shift particles by half box size
+
+DOMAIN: Begin domain decomposition (sync-point 0).
+DOMAIN: Increasing TopNodeAllocFactor=0.08  new value=0.104
+DOMAIN: NTopleaves=32768, determination of top-level tree involved 5 iterations and took 0.187207 sec
+DOMAIN: cost summation for top-level tree took 0.00743738 sec
+DOMAIN: balance reached among multiple-domains=1.57232, average leave-nodes per domain=16384  (took 0.000680962 sec)
+DOMAIN: combining multiple-domains took 0.00653617 sec
+DOMAIN: task reshuffling took 0.0838829 sec
+DOMAIN: particle rearrangement work took 0.170056 sec
+DOMAIN: exchange of 0 particles done. (took 0.00605967 sec)
+DOMAIN: domain decomposition done. (took in total 0.540018 sec)
+DOMAIN: Peano-Hilbert order done, took 0.0978909 sec.
+NGBTREE: Ngb-tree construction.  (presently allocated=247.141 MB)
+NGBTREE: Ngb-tree construction done. took 0.034155 sec  <numnodes>=163401  NTopnodes=37449 NTopleaves=32768
+FORCETREE: Tree construction.  (inserting 262144 points)
+FORCETREE: Increasing TreeAllocFactor, new value=0.805
+FORCETREE: Tree construction.  (inserting 262144 points)
+FORCETREE: Increasing TreeAllocFactor, new value=0.92575
+FORCETREE: Tree construction.  (inserting 262144 points)
+FORCETREE: Increasing TreeAllocFactor, new value=1.06461
+FORCETREE: Tree construction.  (inserting 262144 points)
+FORCETREE: Increasing TreeAllocFactor, new value=1.2243
+FORCETREE: Tree construction.  (inserting 262144 points)
+FORCETREE: Increasing TreeAllocFactor, new value=1.40795
+FORCETREE: Tree construction.  (inserting 262144 points)
+FORCETREE: Increasing TreeAllocFactor, new value=1.61914
+FORCETREE: Tree construction.  (inserting 262144 points)
+FORCETREE: Task 0 has added 621409 empty nodes
+FORCETREE: Tree construction done.  <avg imported/local ratio>=0 <numnodes>=784785 NTopnodes=37449 NTopleaves=32768 tree-build-scalability=1
+DENSITY: ngb iteration   1: need to repeat for       240693 particles. (took 1.91134 sec)
+DENSITY: ngb iteration   2: need to repeat for       213967 particles. (took 1.51354 sec)
+DENSITY: ngb iteration   3: need to repeat for       170407 particles. (took 1.31192 sec)
+DENSITY: ngb iteration   4: need to repeat for        86636 particles. (took 1.03339 sec)
+DENSITY: ngb iteration   5: need to repeat for        22783 particles. (took 0.539443 sec)
+DENSITY: ngb iteration   6: need to repeat for         4321 particles. (took 0.149042 sec)
+DENSITY: ngb iteration   7: need to repeat for         1126 particles. (took 0.031533 sec)
+DENSITY: ngb iteration   8: need to repeat for          339 particles. (took 0.00942456 sec)
+DENSITY: ngb iteration   9: need to repeat for           94 particles. (took 0.00394048 sec)
+DENSITY: ngb iteration  10: need to repeat for           21 particles. (took 0.00227809 sec)
+
+
+ADD BACKGROUND GRID: Adding background grid to IC file
+
+ADD BACKGROUND GRID: Total gas mass before remap=29.258
+DOMAIN: Begin domain decomposition (sync-point 0).
+DOMAIN: NTopleaves=32768, determination of top-level tree involved 5 iterations and took 0.130994 sec
+DOMAIN: cost summation for top-level tree took 0.00709179 sec
+DOMAIN: balance reached among multiple-domains=1.53996, average leave-nodes per domain=16384  (took 0.00027272 sec)
+DOMAIN: combining multiple-domains took 0.00640519 sec
+DOMAIN: task reshuffling took 0.0774681 sec
+DOMAIN: particle rearrangement work took 0.156163 sec
+DOMAIN: exchange of 0 particles done. (took 0.00595991 sec)
+DOMAIN: domain decomposition done. (took in total 0.454396 sec)
+DOMAIN: Peano-Hilbert order done, took 0.0715998 sec.
+FORCETREE: Tree construction.  (inserting 262144 points)
+FORCETREE: Task 0 has added 623141 empty nodes
+FORCETREE: Tree construction done.  <avg imported/local ratio>=0 <numnodes>=786761 NTopnodes=37449 NTopleaves=32768 tree-build-scalability=1
+
+ADD BACKGROUND GRID: voltot=2.16006e+11  2.16006e+11
+ADD BACKGROUND GRID: count_leaves_all=626976
+
+ALLOCATE: Changing to MaxPart = 1439080
+ALLOCATE: Changing to MaxPartSph = 1111400
+DOMAIN: Begin domain decomposition (sync-point 0).
+DOMAIN: NTopleaves=32768, determination of top-level tree involved 5 iterations and took 0.313644 sec
+DOMAIN: cost summation for top-level tree took 0.0192866 sec
+DOMAIN: balance reached among multiple-domains=1.35811, average leave-nodes per domain=16384  (took 0.000270172 sec)
+DOMAIN: combining multiple-domains took 0.0173277 sec
+DOMAIN: task reshuffling took 0.183816 sec
+DOMAIN: particle rearrangement work took 0.37017 sec
+DOMAIN: exchange of 0 particles done. (took 0.0132803 sec)
+DOMAIN: domain decomposition done. (took in total 1.00332 sec)
+DOMAIN: Peano-Hilbert order done, took 0.19702 sec.
+NGBTREE: Ngb-tree construction.  (presently allocated=489.005 MB)
+NGBTREE: Ngb-tree construction done. took 0.100384 sec  <numnodes>=351337  NTopnodes=37449 NTopleaves=32768
+ADD BACKGROUND GRID: distribution of fluid quantities in a SPH-like fashion
+ADD BACKGROUND GRID: finding the normalization factors
+ADD BACKGROUND GRID: done
+ADD BACKGROUND GRID: distributing the fluid quantities
+ADD BACKGROUND GRID: done
+
+ADD BACKGROUND GRID: count_elim_all=262144  IDNew=1000262145
+ADD BACKGROUND GRID: added particles=364832  (task 0: NumGas=626976)
+ADD BACKGROUND GRID: new particle number=889120
+ADD BACKGROUND GRID: new gas particle number=626976
+
+ADD BACKGROUND GRID: Total gas mass after remap=29.258
+
+writing snapshot file #0 @ time 0 ... (DumpFlag=1)
+writing snapshot files group 1 out of 1 - files 0-0 (total of 1 files): '../ICs/dm_ic-with-grid'
+writing block 0 (Coordinates)...
+writing block 1 (Velocities)...
+writing block 2 (ParticleIDs)...
+writing block 3 (Masses)...
+writing block 4 (InternalEnergy)...
+writing block 5 (Density)...
+done with writing snapshot (took 6.21416 sec).
+
+ADD BACKGROUND GRID: GridSize = 32
+ADD BACKGROUND GRID: Suggested value for MeanVolume = 823975
+ADD BACKGROUND GRID: Suggested value for ReferenceGasPartMass = 0.00011161
+ADD BACKGROUND GRID: Suggested value for BoxSize = 3000
+ADD BACKGROUND GRID: Done!
+
+Code run for 23.415351 seconds!
+endrun called, calling MPI_Finalize()
+bye!
+
